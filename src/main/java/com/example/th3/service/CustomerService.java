@@ -25,11 +25,11 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void save(Customer customer) {
-customerRepository.save(customer);
+     customerRepository.save(customer);
     }
 
     @Override
     public void remove(Long id) {
-customerRepository.deleteById(id);
+    customerRepository.deleteById(id);
     }
 }

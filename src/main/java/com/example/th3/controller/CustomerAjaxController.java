@@ -33,20 +33,24 @@ public class CustomerAjaxController {
         }
         return new ResponseEntity<>(customerOptional.get(), HttpStatus.OK);
     }
-//    @PostMapping
-//    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
+    @PostMapping
+    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
 //        return new ResponseEntity<>(customerService.save(customer), HttpStatus.CREATED);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
-//        Optional<Customer> customerOptional = customerService.findById(id);
-//        if (!customerOptional.isPresent()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        customer.setId(customerOptional.get().getId());
+        customerService.save(customer);
+        return new ResponseEntity<>(customer, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
+        Optional<Customer> customerOptional = customerService.findById(id);
+        if (!customerOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        customer.setId(customerOptional.get().getId());
 //        return new ResponseEntity<>(customerService.save(customer), HttpStatus.OK);
-//    }
+        customerService.save(customer);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Customer> deleteCustomer(@PathVariable Long id) {
