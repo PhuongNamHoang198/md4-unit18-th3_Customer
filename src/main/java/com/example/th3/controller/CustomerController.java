@@ -50,7 +50,7 @@ public class CustomerController {
             modelAndView.addObject("customer", customer.get());
             return modelAndView;
         } else {
-            return new ModelAndView("/error.404");
+            return new ModelAndView("/customer/error.404");
         }
     }
 
@@ -72,7 +72,7 @@ public class CustomerController {
             return modelAndView;
 
         } else {
-            return new ModelAndView("/error.404");
+            return new ModelAndView("/customer/error.404");
         }
     }
 

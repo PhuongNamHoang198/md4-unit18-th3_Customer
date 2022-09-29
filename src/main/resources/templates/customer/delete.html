@@ -4,6 +4,23 @@
   <meta charset="UTF-8">
   <title>Delete customer</title>
 </head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+  function deleteCustomer(){
+    let id = $('#id').val();
+    $.ajax({
+      type: "DELETE",
+      //tên API
+      url: `/customers/delete/`+id,
+      //xử lý khi thành công
+      success: alert("okela")
+
+    });
+    //chặn sự kiện mặc định của thẻ
+    event.preventDefault();
+  }
+</script>
 <body>
 <h1>Delete customer</h1>
 <h2>Are you sure?</h2>
@@ -23,7 +40,7 @@
     </tr>
     <tr>
       <td></td>
-      <td><input type="submit" value="Delete customer"></td>
+      <td><input type="submit" onclick="deleteCustomer()" value="Delete customer"></td>
     </tr>
   </table>
 </form>

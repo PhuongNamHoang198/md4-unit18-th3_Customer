@@ -4,6 +4,34 @@
     <meta charset="UTF-8">
     <title>edit customer</title>
 </head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+  function editCustomer(){
+    let id = $('#id').val();
+    let firstName = $('#firstName').val();
+    let lastName = $('#lastName').val();
+    let newCustomer = {
+      firstName: firstName,
+      lastName: lastName
+    }
+
+
+    $.ajax({
+      headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      type: "PUT",
+      data: JSON.stringify(newCustomer),
+      url: "http://localhost:8080/customers/edit/"+id,
+      success: alert("oKeeeee")
+    })
+    event.preventDefault();
+
+
+  }
+</script>
 <body>
 <h1>Edit customer</h1>
 <p>
@@ -25,7 +53,7 @@
     </tr>
     <tr>
       <td></td>
-      <td><input type="submit" value="Update customer"></td>
+      <td><input type="submit" onclick="editCustomer()" value="Update customer"></td>
     </tr>
   </table>
 </form>

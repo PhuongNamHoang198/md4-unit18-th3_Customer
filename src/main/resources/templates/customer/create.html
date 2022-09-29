@@ -4,6 +4,32 @@
   <meta charset="UTF-8">
   <title>Create customer</title>
 </head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+  function addNewCustomer() {
+    let firstName = $('#firstName').val();
+    let lastName = $('#lastName').val();
+    let newCustomer = {
+      firstName: firstName,
+      lastName: lastName
+    };
+    $.ajax({
+      headers: {
+        'Accept':'application/json',
+        'Content-Type':'application/json'
+        // kieu du lieu gui len la Json
+      },
+      type: 'POST',
+      data:JSON.stringify(newCustomer),
+      url: "http://localhost:8080/customers",
+      success: alert("success")
+    })
+    event.preventDefault();
+    // event.preventDefault() la ham dung de ngan chan su kien mac dinh cua trinh duyet
+    // trong truong hop nay la ngan chan su kien mac dinh la gui du lieu len server
+    // khi nhan vao nut submit
+  }
+</script>
 <body>
 <h1>Create customer</h1>
 <p>
@@ -24,7 +50,9 @@
     </tr>
     <tr>
       <td></td>
-      <td><input type="submit" value="Create customer"></td>
+      <td><input type="submit" onclick="addNewCustomer()" value="Create customer"></td>
+<!--      // onclick la ham dung de thuc hien mot ham javascript khi nhan vao nut submit-->
+
     </tr>
   </table>
 </form>
